@@ -58,7 +58,7 @@ const errorCode = errorCodes[Math.floor(Math.random() * errorCodes.length)];
       modal.style.zIndex = 100 + Math.floor(Math.random() * 1000);
 
       modal.innerHTML = `
-  <div class="modal-header" style="background-color: ${headerColor}">
+  <div class="modal-header">
     <span class="modal-title">${errorCode}</span>
   </div>
   ${
