@@ -1,42 +1,46 @@
-const yesBtn = document.getElementById("yesBtn");
-const noBtn = document.getElementById("noBtn");
-const startModal = document.querySelector(".start-modal");
+const startModal = document.getElementById("start-model");
+const yesBtn = document.getElementById("yesButton");
+const noBtn = document.getElementById("noButton");
+const madnessContainer = document.getElementById("madness-container");
 const bsod = document.getElementById("bsod");
 
-const modalTexts = [
-  "CRM восстает из мертвых…",
-  "Кэш очищается… или нет?",
-  "Ошибка доступа к базе данных.",
-  "Сессия устарела. Обновите реальность.",
-  "Переподключение к аду…",
-  "Добро пожаловать в 2004.",
-  "Вы не должны были это нажимать.",
-  "Процессоры перегрелись от стыда.",
-  "Загрузка воспоминаний…",
-  "Удаление данных — отмена отмены отмены."
-];
-
 yesBtn.addEventListener("click", () => {
-  startModal.classList.add("hidden");
-
-  let interval = setInterval(() => {
-    const modal = document.createElement("div");
-    modal.classList.add("modal");
-    modal.style.top = Math.random() * 80 + "%";
-    modal.style.left = Math.random() * 80 + "%";
-    modal.textContent =
-      modalTexts[Math.floor(Math.random() * modalTexts.length)];
-    document.body.appendChild(modal);
-    setTimeout(() => modal.remove(), 5000);
-  }, 500);
-
-  setTimeout(() => {
-    clearInterval(interval);
-    document.querySelectorAll(".modal").forEach((m) => m.remove());
-    bsod.classList.remove("hidden");
-  }, 15000);
+  startModal.remove();
+  startMadness();
 });
 
 noBtn.addEventListener("click", () => {
   window.location.href = "mems.html";
 });
+
+function startMadness() {
+  const phrases = [
+    "Восстановление…",
+    "Обнаружен сбой",
+    "Данные утеряны",
+    "Восстание CRM началось",
+    "Ошибка 666",
+    "Сбой! Сбой! Сбой!",
+    "Не стой на месте",
+    "ЖИВИ СТРАДАЙ CRM"
+  ];
+
+  const interval = setInterval(() => {
+    const modal = document.createElement("div");
+    modal.className = "modal";
+    modal.style.top = `${Math.random() * 90}vh`;
+    modal.style.left = `${Math.random() * 90}vw`;
+    modal.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+    madnessContainer.appendChild(modal);
+
+    if (madnessContainer.childNodes.length > 50) {
+      madnessContainer.removeChild(madnessContainer.firstChild);
+    }
+  }, 300);
+
+  setTimeout(() => {
+    clearInterval(interval);
+    madnessContainer.innerHTML = "";
+    bsod.classList.remove("hidden");
+  }, 15000); // 15 секунд трэша
+}
