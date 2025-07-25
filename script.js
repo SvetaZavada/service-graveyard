@@ -1,7 +1,7 @@
 const yesBtn = document.getElementById("yesBtn");
 const glitchSound = document.getElementById("glitchSound");
 const errorSound = document.getElementById("errorSound");
-const errorSrc = errorSoundEl.querySelector("source").src;
+const errorSrc = errorSound.querySelector("source").src;
 
 let madnessActive = false;
 let madnessInterval;
