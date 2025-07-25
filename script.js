@@ -1,6 +1,7 @@
 const yesBtn = document.getElementById("yesBtn");
 const glitchSound = document.getElementById("glitchSound");
 const errorSound = document.getElementById("errorSound");
+const errorSrc = errorSoundEl.querySelector("source").src;
 
 let madnessActive = false;
 let madnessInterval;
@@ -30,6 +31,8 @@ yesBtn.addEventListener("click", () => {
 
     document.body.appendChild(modal);
 
+    playErrorPerModal();
+
     // Удаляем модалку после 7 секунд, если она не на виду
     setTimeout(() => {
       if (modal.parentNode) modal.remove();
@@ -49,4 +52,10 @@ yesBtn.addEventListener("click", () => {
 
 function triggerMadness() {
   if (!madnessActive) yesBtn.click();
+}
+
+function playErrorPerModal() {
+  const a = new Audio(errorSrc);
+  a.volume = 0.35;   // не оглохнуть
+  a.play().catch(() => {}); // на всякий случай, чтобы не падало в мобайле
 }
