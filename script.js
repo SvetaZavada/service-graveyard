@@ -13,31 +13,43 @@ yesBtn.addEventListener("click", () => {
   madnessActive = true;
   glitchSound.play();
 
-  // Запускаем массовый спавн модалок
-  madnessInterval = setInterval(() => {
-    const modal = document.createElement("div");
-    modal.classList.add("modal");
-    if (Math.random() < 0.5) modal.classList.add("glitchy");
+   // 🚨 ЗАМЕНА: хаотичный спавн модалок (от 1 до 7), с рандомной задержкой
+  function spawnModalsRandomly() {
+    if (!madnessActive) return;
 
-    modal.style.top = Math.random() * 80 + "%";
-    modal.style.left = Math.random() * 80 + "%";
-    modal.style.zIndex = 100 + Math.floor(Math.random() * 1000);
+    const howMany = Math.floor(Math.random() * 7) + 1; // от 1 до 7
 
-    modal.innerHTML = `
-      <p>Система перегружена!</p>
-      <button onclick="triggerMadness()">Да</button>
-      <button>Нет</button>
-    `;
+    for (let i = 0; i < howMany; i++) {
+      const modal = document.createElement("div");
+      modal.classList.add("modal");
+      if (Math.random() < 0.5) modal.classList.add("glitchy");
 
-    document.body.appendChild(modal);
+      modal.style.top = Math.random() * 80 + "%";
+      modal.style.left = Math.random() * 80 + "%";
+      modal.style.zIndex = 100 + Math.floor(Math.random() * 1000);
 
-    playErrorPerModal();
+      modal.innerHTML = `
+        <p>Система перегружена!</p>
+        <button onclick="triggerMadness()">Да</button>
+        <button>Нет</button>
+      `;
 
-    // Удаляем модалку после 7 секунд, если она не на виду
-    setTimeout(() => {
-      if (modal.parentNode) modal.remove();
-    }, 7000);
-  }, 600);
+      document.body.appendChild(modal);
+      playErrorPerModal();
+
+      // Удаляем модалку через 7 секунд
+      setTimeout(() => {
+        if (modal.parentNode) modal.remove();
+      }, 7000);
+    }
+
+    // Следующий вызов через случайное время (от 100 до 600 мс)
+    const nextDelay = Math.random() * 500 + 100;
+    madnessInterval = setTimeout(spawnModalsRandomly, nextDelay);
+  }
+
+  // Стартуем хаос
+  spawnModalsRandomly();
 
   // Останавливаем через 15 сек, запускаем BSOD (но пока закомментирован)
   madnessTimeout = setTimeout(() => {
@@ -56,6 +68,6 @@ function triggerMadness() {
 
 function playErrorPerModal() {
   const a = new Audio(errorSrc);
-  a.volume = 0.35;   // не оглохнуть
+  // a.volume = 0.35;   // не оглохнуть
   a.play().catch(() => {}); // на всякий случай, чтобы не падало в мобайле
 }
