@@ -58,6 +58,42 @@ button {
   border: 2px solid white;
 }
 
+/* Общий стиль для кнопок */
+.modal button {
+  font-family: inherit; /* Наследуем шрифт модалки */
+  background-color: #fff;
+  color: #000;
+  border: none;
+  padding: 8px 16px;
+  margin: 5px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+/* При наведении — немного глича */
+.modal button:hover {
+  background-color: #ddd;
+  transform: scale(1.05);
+}
+
+/* Для глитч-модалок (с чёрным фоном) — инвертируем */
+.modal.glitchy {
+  background-color: #000;
+  color: #fff;
+}
+
+/* Кнопки внутри глитч-модалок */
+.modal.glitchy button {
+  background-color: #111;
+  color: #fff;
+}
+
+.modal.glitchy button:hover {
+  background-color: #333;
+}
+
 #overlay::after {
   content: '';
   position: fixed;
