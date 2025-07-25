@@ -69,7 +69,7 @@ body {
   justify-content: center;
   width: 30px; /* квадрат */
   height: 100%;
-  border-left: 4px solid black; /* ← это ТА самая вертикальная линия */
+  border-left: 3px solid black; /* ← это ТА самая вертикальная линия */
   cursor: pointer;
   font-size: 18px;
   box-sizing: border-box;
@@ -77,7 +77,7 @@ body {
 
 .modal-title-wrap {
   padding: 6px 10px;
-  border-bottom: 2px solid black;
+  
 
   display: flex;
   align-items: center;
