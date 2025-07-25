@@ -3,19 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Service Graveyard</title>
+  <title>Service Graveyard — RESTORE</title>
 
-  <!-- Подключение шрифта DotGothic16 с кириллицей -->
+  <!-- Шрифт с кириллицей -->
   <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap&subset=cyrillic" rel="stylesheet" />
 
-  <!-- Подключение CSS -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Контейнер для модалок -->
-  <div id="modal-container"></div>
+  <!-- CRT / глич-оверлей -->
+  <div id="glitch-overlay"></div>
 
-  <!-- Подключение скрипта -->
+  <!-- Контейнер для всех окон -->
+  <div id="ui"></div>
+
+  <!-- BSOD (покажется рандомно после «Да») -->
+  <div id="bsod" hidden>
+    <div class="bsod-inner">
+      <h1>:(</h1>
+      <p>Ваш сервис столкнулся с проблемой и должен быть закрыт.</p>
+      <p>STOP: RESTORE_ATTEMPT_FAILURE (0xDEADCODE)</p>
+      <p>Сканируйте QR или нажмите любую кнопку, чтобы продолжить страдать…</p>
+    </div>
+  </div>
+
+  <!-- глючный курсор -->
+  <div id="cursor1" class="gcursor"></div>
+  <div id="cursor2" class="gcursor"></div>
+
   <script src="script.js"></script>
 </body>
 </html>
