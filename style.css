@@ -1,7 +1,12 @@
 body {
   margin: 0;
   padding: 0;
-  background: black;
+  height: 100vh;
+  background-image: url('тут_твой_фон.png');
+  background-repeat: no-repeat;
+  background-size: cover; /* или contain, но cover лучше */
+  background-position: center;
+  image-rendering: pixelated; /* чтобы не размывало */
   font-family: monospace;
   overflow: hidden;
   color: white;
@@ -80,13 +85,24 @@ button {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background: #0100aa;
   color: white;
-  font-size: 18px;
+  z-index: 999999; /* максимум — быть поверх всех модалок */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
   padding: 20px;
-  z-index: 9999;
+  font-family: monospace;
+  font-size: 1.2rem;
+  
+}
+
+.bsod-content {
+  max-width: 600px;
 }
 
 @media (max-width: 768px) {
