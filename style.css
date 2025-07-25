@@ -172,19 +172,19 @@ button {
 
 .modal.small {
   width: 200px;
-  height: 100px;
+  
   font-size: 0.8rem;
 }
 
 .modal.normal {
   width: 300px;
-  height: 160px;
+  
   font-size: 1rem;
 }
 
 .modal.large {
   width: 500px;
-  height: 280px;
+  
   font-size: 1.25rem;
 }
 
