@@ -41,10 +41,17 @@ body {
 .modal-header {
   display: flex;
   justify-content: space-between;
-  align-items: stretch;
+  align-items: center;
+  background-color: #0047ab; /* теперь цвет шапки тут */
+  padding: 0 10px;
   height: 32px;
-  border-bottom: 3px solid currentColor;
-  background-color: #0047ab;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  border-bottom: 3px solid black; /* только низ */
+  border-top: none;
+  border-left: none;
+  border-right: none;
 }
 
 .modal-title-wrap {
