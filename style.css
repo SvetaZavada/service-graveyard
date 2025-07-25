@@ -132,17 +132,17 @@ button {
 }
 
 .modal.dark button {
-  background-color: #black;
+  background-color: black;
   color: white;
-  border: 2px solid #555;
+  border: 2px solid white;
   font-family: inherit;
   border-radius: 0;
 }
 
 .modal.light button {
-  background-color: #white;
+  background-color: white;
   color: black;
-  border: 2px solid #999;
+  border: 2px solid black;
   font-family: inherit;
   border-radius: 0;
 }
