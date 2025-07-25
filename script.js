@@ -23,17 +23,47 @@ yesBtn.addEventListener("click", () => {
     for (let i = 0; i < howMany; i++) {
       const modal = document.createElement("div");
       modal.classList.add("modal");
-      if (Math.random() < 0.5) modal.classList.add("glitchy");
+
+// Размер
+const sizes = ["small", "normal", "large"];
+const size = sizes[Math.floor(Math.random() * sizes.length)];
+modal.classList.add(size);
+
+// Тема
+const themes = ["light", "dark"];
+const theme = themes[Math.floor(Math.random() * themes.length)];
+modal.classList.add(theme);
+
+// Цвет шапки (по теме)
+const headerColors = {
+  light: ["#0047ab", "#008080"],
+  dark: ["#ff69b4", "#9370DB", "#00CED1"]
+};
+const headerColor = headerColors[theme][Math.floor(Math.random() * headerColors[theme].length)];
+
+// Рандомный код ошибки
+const errorCodes = ["0xDEADFADE", "0xBADA55", "0xFA1LURE", "0xC0FFEE", "0xABADBABE", "0xBADCAFFE"];
+const errorCode = errorCodes[Math.floor(Math.random() * errorCodes.length)];
+
 
       modal.style.top = Math.random() * 120 - 10 + "%";
       modal.style.left = Math.random() * 120 - 10 + "%";
       modal.style.zIndex = 100 + Math.floor(Math.random() * 1000);
 
       modal.innerHTML = `
-        <p>Система перегружена!</p>
+  <div class="modal-header" style="background-color: ${headerColor}">
+    <span class="modal-title">${errorCode}</span>
+  </div>
+  ${
+    size === "small"
+      ? `<p class="modal-text">Критическая ошибка</p>`
+      : `
+        <p class="modal-text">Система перегружена!</p>
         <button onclick="triggerMadness()">Да</button>
         <button>Нет</button>
-      `;
+      `
+  }
+`;
 
       document.body.appendChild(modal);
       playErrorPerModal();
