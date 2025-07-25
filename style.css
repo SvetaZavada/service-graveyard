@@ -4,9 +4,9 @@ body {
   height: 100vh;
   background-image: url('background.png');
   background-repeat: no-repeat;
-  background-size: cover; /* или contain, но cover лучше */
+  background-size: cover;
   background-position: center;
-  image-rendering: pixelated; /* чтобы не размывало */
+  image-rendering: pixelated;
   font-family: monospace;
   overflow: hidden;
   color: white;
@@ -23,6 +23,10 @@ body {
   z-index: 1000;
   animation: shake 0.3s infinite alternate;
   border-radius: 0;
+  background: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
 }
 
 .start-model {
@@ -30,67 +34,62 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 100;      /* поверх всего перед стартом */
-  animation: none;      /* не надо дрожать до “Да” */
+  z-index: 100;
+  animation: none;
 }
 
 .modal-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 0; /* убираем внутренние отступы */
-  border-bottom: 3px solid currentColor;
-  border-radius: 0;
+  align-items: stretch;
   height: 32px;
-  position: relative;
+  border-bottom: 3px solid currentColor;
+  background-color: #0047ab;
 }
 
-/* Заголовок */
+.modal-title-wrap {
+  padding: 6px 10px;
+  border-right: 2px solid currentColor;
+  display: flex;
+  align-items: center;
+  background-color: #0047ab;
+}
+
 .modal-title {
-  padding: 0 10px;
   font-weight: bold;
   font-size: 14px;
   color: white;
 }
 
-/* Крестик */
 .modal-close {
   width: 32px;
-  height: 100%;
-  cursor: default;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  right: 0;
-  top: 0;
+  font-weight: bold;
+  border-left: 2px solid currentColor;
+  cursor: pointer;
+  background-color: #0047ab;
+  color: white;
 }
 
-/* Сам крестик (через псевдоэлемент) */
-.modal-close::before,
-.modal-close::after {
-  content: "";
-  position: absolute;
-  width: 12px;
-  height: 2px;
-  background-color: currentColor;
-}
-
-.modal-close::before {
-  transform: rotate(45deg);
-}
-
-.modal-close::after {
-  transform: rotate(-45deg);
-}
-
-/* Тема: светлая */
-.modal.light {
+.modal-content {
+  padding: 16px;
+  background: white;
   color: black;
+  flex-grow: 1;
 }
 
-/* Тема: тёмная */
-.modal.dark {
+.modal.dark .modal-header,
+.modal.dark .modal-title-wrap,
+.modal.dark .modal-close {
+  background-color: black;
+  color: white;
+  border-color: white;
+}
+
+.modal.dark .modal-content {
+  background-color: black;
   color: white;
 }
 
@@ -101,22 +100,38 @@ button {
   cursor: pointer;
 }
 
-.hidden {
-  display: none;
+.modal button {
+  font-family: inherit;
+  background-color: #fff;
+  color: #000;
+  border: 2px solid black;
+  padding: 8px 16px;
+  margin: 5px;
+  border-radius: 0;
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
 }
 
-@keyframes shake {
-  0% { transform: translate(1px, 1px); }
-  100% { transform: translate(-1px, -2px); }
+.modal button:hover {
+  background-color: #ddd;
+  transform: scale(1.05);
 }
 
-@keyframes glitch {
-  0% { clip-path: inset(0 0 0 0); }
-  20% { clip-path: inset(10% 0 40% 0); }
-  40% { clip-path: inset(30% 0 20% 0); }
-  60% { clip-path: inset(50% 0 5% 0); }
-  80% { clip-path: inset(20% 0 40% 0); }
-  100% { clip-path: inset(0 0 0 0); }
+.modal.dark button {
+  background-color: black;
+  color: white;
+  border: 2px solid white;
+}
+
+.modal.dark button:hover {
+  background-color: #333;
+}
+
+.button-wrap {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
 }
 
 .modal.glitchy {
@@ -126,29 +141,6 @@ button {
   border: 2px solid white;
 }
 
-/* Общий стиль для кнопок */
-.modal button {
-  font-family: inherit; /* Наследуем шрифт модалки */
-  background-color: #fff;
-  color: #000;
-  border: none;
-  padding: 8px 16px;
-  margin: 5px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: all 0.2s ease-in-out;
-  border-radius: 0;
-}
-
-/* При наведении — немного глича */
-.modal button:hover {
-  background-color: #ddd;
-  transform: scale(1.05);
-  
-}
-
-/* Кнопки внутри глитч-модалок */
 .modal.glitchy button {
   background-color: #111;
   color: #fff;
@@ -181,56 +173,22 @@ button {
   font-size: 1rem;
 }
 
-.modal.light {
-  background-color: white;
-  color: black;
+.hidden {
+  display: none;
 }
 
-.modal.dark {
-  background-color: black;
-  color: white;
-  border: 2px solid white; /* 💥 белая рамка */
-  
+@keyframes shake {
+  0% { transform: translate(1px, 1px); }
+  100% { transform: translate(-1px, -2px); }
 }
 
-.modal.dark button {
-  background-color: black;
-  color: white;
-  border: 2px solid white;
-  font-family: inherit;
-  border-radius: 0;
-}
-
-.modal.light button {
-  background-color: white;
-  color: black;
-  border: 2px solid black;
-  font-family: inherit;
-  border-radius: 0;
-}
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 4px 8px;
-  color: white;
-  font-weight: bold;
-  font-size: 0.9rem;
-  border-bottom: 1px solid #222;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-}
-
-.modal-title {
-  flex-grow: 1;
-}
-
-.button-wrap {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 15px;
+@keyframes glitch {
+  0% { clip-path: inset(0 0 0 0); }
+  20% { clip-path: inset(10% 0 40% 0); }
+  40% { clip-path: inset(30% 0 20% 0); }
+  60% { clip-path: inset(50% 0 5% 0); }
+  80% { clip-path: inset(20% 0 40% 0); }
+  100% { clip-path: inset(0 0 0 0); }
 }
 
 #overlay::after {
@@ -264,7 +222,7 @@ button {
   height: 100vh;
   background: #0100aa;
   color: white;
-  z-index: 999999; /* максимум — быть поверх всех модалок */
+  z-index: 999999;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -273,7 +231,6 @@ button {
   padding: 20px;
   font-family: monospace;
   font-size: 1.2rem;
-  
 }
 
 .bsod-content {
@@ -289,6 +246,6 @@ button {
   .start-model {
     top: 20%;
     left: 50%;
-    transform: translateX(-50%); /* Только по горизонтали */
+    transform: translateX(-50%);
   }
 }
