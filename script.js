@@ -59,7 +59,7 @@ yesBtn.addEventListener("click", () => {
     glitchSound.currentTime = 0;
     errorSound.play();
 
-    // document.getElementById("bsod").classList.remove("hidden"); // включаем позже
+    document.getElementById("bsod").classList.remove("hidden"); // включаем позже
   }, 8000);
 });
 
