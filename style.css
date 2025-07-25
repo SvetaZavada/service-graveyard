@@ -40,7 +40,7 @@ body {
   align-items: center;
   padding: 0; /* убираем внутренние отступы */
   border-bottom: 3px solid currentColor;
-  
+  border-radius: 0;
   height: 32px;
   position: relative;
 }
