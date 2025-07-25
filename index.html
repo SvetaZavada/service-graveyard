@@ -7,12 +7,18 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="overlay"></div>
-  <div class="modal.light">
-    <p>Ты уверена, что хочешь включить режим безумия?</p>
-    <button id="yesBtn">Да</button>
-    <button>Нет</button>
+  <div id="overlay"></div> <!-- этот для глитча -->
+  
+  <div id="start-modal" class="modal light normal start-model">
+  <div class="modal-header" style="background-color:#0047ab">
+    <span class="modal-title">Restore CRM</span>
   </div>
+  <p>Вы действительно хотите восстановить CRM?</p>
+  <div class="button-wrap">
+    <button id="yesButton">Да</button>
+    <button id="noButton">Нет</button>
+  </div>
+</div>
 
 <!-- Синий экран -->
  
@@ -20,7 +26,7 @@
   <div class="bsod-content">
     <h1>:(</h1>
     <p>Ваш сервис столкнулся с проблемой и должен быть закрыт.</p>
-    <p>Код ошибки: 0xDEADC0DEE</p>
+    <p>Код ошибки: 0xDEADC0DE</p>
     <p>Перезагрузите страницу, чтобы продолжить страдать...</p>
   </div>
 </div>
