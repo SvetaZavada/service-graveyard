@@ -270,3 +270,15 @@ button {
     transform: translateX(-50%);
   }
 }
+
+.modal.dark .modal-header {
+  background-color: #111 !important;
+  color: white;
+  border-bottom: 3px solid white;
+}
+
+.modal.light .modal-header {
+  background-color: #0047ab !important;
+  color: white;
+  border-bottom: 3px solid black;
+}
