@@ -1,7 +1,13 @@
 body {
   margin: 0;
+  padding: 0;
+  height: 100vh;
   font-family: 'DotGothic16', sans-serif;
-  background: url("background.png") center/cover no-repeat;
+  background: url("background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  image-rendering: pixelated; /* чтобы не размывало */
   cursor: url("cursor-default.png"), auto;
   overflow: hidden;
 }
