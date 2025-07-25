@@ -77,7 +77,8 @@ body {
 
 .modal-title-wrap {
   padding: 6px 10px;
-  
+  border-bottom: 2px solid black;
+
   display: flex;
   align-items: center;
   background-color: #0047ab;
