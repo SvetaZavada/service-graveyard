@@ -226,4 +226,9 @@ button {
     left: 10%;
     top: 20%;
   }
+  .start-model {
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%); /* Только по горизонтали */
+  }
 }
