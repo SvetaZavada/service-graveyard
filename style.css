@@ -24,6 +24,7 @@ body {
   border: 4px solid black;
   z-index: 10;
   animation: shake 0.3s infinite alternate;
+  border-radius: 0;
 }
 
 button {
@@ -70,12 +71,14 @@ button {
   cursor: pointer;
   font-size: 1rem;
   transition: all 0.2s ease-in-out;
+  border-radius: 0;
 }
 
 /* При наведении — немного глича */
 .modal button:hover {
   background-color: #ddd;
   transform: scale(1.05);
+  
 }
 
 /* Для глитч-модалок (с чёрным фоном) — инвертируем */
@@ -125,18 +128,24 @@ button {
 .modal.dark {
   background-color: #111;
   color: white;
+  border: 2px solid white; /* 💥 белая рамка */
+  
 }
 
 .modal.dark button {
   background-color: #222;
   color: white;
-  border: 1px solid #555;
+  border: 2px solid #555;
+  font-family: inherit;
+  border-radius: 0;
 }
 
 .modal.light button {
   background-color: #ddd;
   color: black;
-  border: 1px solid #999;
+  border: 2px solid #999;
+  font-family: inherit;
+  border-radius: 0;
 }
 
 .modal-header {
