@@ -94,6 +94,68 @@ button {
   background-color: #333;
 }
 
+.modal.small {
+  width: 200px;
+  height: 100px;
+  font-size: 0.8rem;
+}
+
+.modal.normal {
+  width: 300px;
+  height: 160px;
+  font-size: 1rem;
+}
+
+.modal.large {
+  width: 500px;
+  height: 280px;
+  font-size: 1.25rem;
+}
+
+.modal.large button {
+  padding: 12px 18px;
+  font-size: 1rem;
+}
+
+.modal.light {
+  background-color: white;
+  color: black;
+}
+
+.modal.dark {
+  background-color: #111;
+  color: white;
+}
+
+.modal.dark button {
+  background-color: #222;
+  color: white;
+  border: 1px solid #555;
+}
+
+.modal.light button {
+  background-color: #ddd;
+  color: black;
+  border: 1px solid #999;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px;
+  color: white;
+  font-weight: bold;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #222;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.modal-title {
+  flex-grow: 1;
+}
+
 #overlay::after {
   content: '';
   position: fixed;
