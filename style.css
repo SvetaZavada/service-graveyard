@@ -34,6 +34,68 @@ body {
   animation: none;      /* не надо дрожать до “Да” */
 }
 
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0; /* убираем внутренние отступы */
+  border-bottom: 3px solid currentColor;
+  border-top: 3px solid currentColor;
+  border-left: 3px solid currentColor;
+  border-right: 3px solid currentColor;
+  height: 32px;
+  position: relative;
+}
+
+/* Заголовок */
+.modal-title {
+  padding: 0 10px;
+  font-weight: bold;
+  font-size: 14px;
+  color: white;
+}
+
+/* Крестик */
+.modal-close {
+  width: 32px;
+  height: 100%;
+  cursor: default;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+/* Сам крестик (через псевдоэлемент) */
+.modal-close::before,
+.modal-close::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 2px;
+  background-color: currentColor;
+}
+
+.modal-close::before {
+  transform: rotate(45deg);
+}
+
+.modal-close::after {
+  transform: rotate(-45deg);
+}
+
+/* Тема: светлая */
+.modal.light {
+  color: black;
+}
+
+/* Тема: тёмная */
+.modal.dark {
+  color: white;
+}
+
 button {
   margin: 10px 5px 0;
   padding: 5px 15px;
