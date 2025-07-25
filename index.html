@@ -1,25 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Service Graveyard</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="window" id="mainWindow">
-    <div class="title-bar">
-      <span class="title">System Request</span>
-    </div>
-    <div class="window-body">
-      <p>Are you sure you want to restore the CRM?</p>
-      <div class="button-row">
-        <button id="yesButton">Yes</button>
-        <button id="noButton">No</button>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Service Graveyard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="modal">
+      <h1>Вы действительно хотите воскресить CRM?</h1>
+      <div class="buttons">
+        <button id="yes">Да</button>
+        <button id="no">Нет</button>
       </div>
     </div>
-  </div>
-  <div id="glitchContainer"></div>
-  <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
