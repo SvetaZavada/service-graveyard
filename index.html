@@ -30,31 +30,36 @@
 <!-- Синий экран -->
  
 <div id="bsod" style="
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: #0000AA;
+  background: #0000AA;
   color: white;
-  font-family: monospace;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: left;
-  padding: 40px;
-  box-sizing: border-box;
+  font-family: 'Courier New', monospace;
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+  position: fixed;
+  inset: 0;
   z-index: 9999;
-  visibility: visible; /* по умолчанию скрыт, покажем через JS */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
 ">
- 
-    <h1>:(</h1>
-    <p>Ваш сервис столкнулся с проблемой и должен быть закрыт.</p>
-    <p>Код ошибки: 0xDEADC0DE</p>
-    <p>Перезагрузите страницу, чтобы продолжить страдать...</p>
-  </div>
+
+  <h1 style="
+    font-size: 96px;
+    margin-bottom: 40px;
+  ">:(</h1>
+
+  <p>Ваш сервис столкнулся с проблемой<br>
+  и должен быть закрыт.</p>
+
+  <p>Код ошибки: 0xDEADC0DE</p>
+
+  <p>Перезагрузите страницу,<br>
+  чтобы продолжить страдать...</p>
+
 </div>
+
 
   <audio id="glitchSound" loop>
     <source src="glitch.mp3" type="audio/mpeg" />
