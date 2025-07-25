@@ -60,6 +60,7 @@ body {
   font-weight: bold;
   border-bottom: 3px solid black;
   padding: 0;
+  gap: 0;
 }
 
 .modal-close {
@@ -86,6 +87,8 @@ body {
   font-weight: bold;
   font-size: 14px;
   color: white;
+  padding: 0 8px;
+  margin: 0;
 }
 
 
