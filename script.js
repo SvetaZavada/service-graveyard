@@ -1,48 +1,52 @@
-const startModal = document.getElementById("start-modal"); // вот этот ID должен совпадать с HTML
-const yesBtn = document.getElementById("yesButton");
-const noBtn = document.getElementById("noButton");
-const madnessContainer = document.getElementById("madness-container");
-// const bsod = document.getElementById("bsod");
+const yesBtn = document.getElementById("yesBtn");
+const glitchSound = document.getElementById("glitchSound");
+const errorSound = document.getElementById("errorSound");
+
+let madnessActive = false;
+let madnessInterval;
+let madnessTimeout;
 
 yesBtn.addEventListener("click", () => {
-  if (startModal) {
-    startModal.remove(); // скрываем модалку
-  }
-  startMadness(); // начинаем трэш
-});
+  if (madnessActive) return;
 
-noBtn.addEventListener("click", () => {
-  window.location.href = "mems.html";
-});
+  madnessActive = true;
+  glitchSound.play();
 
-function startMadness() {
-  const phrases = [
-    "Восстановление…",
-    "Обнаружен сбой",
-    "Данные утеряны",
-    "Восстание CRM началось",
-    "Ошибка 666",
-    "Сбой! Сбой! Сбой!",
-    "Не стой на месте",
-    "ЖИВИ СТРАДАЙ CRM"
-  ];
-
-  const interval = setInterval(() => {
+  // Запускаем массовый спавн модалок
+  madnessInterval = setInterval(() => {
     const modal = document.createElement("div");
-    modal.className = "modal";
-    modal.style.top = `${Math.random() * 90}vh`;
-    modal.style.left = `${Math.random() * 90}vw`;
-    modal.textContent = phrases[Math.floor(Math.random() * phrases.length)];
-    madnessContainer.appendChild(modal);
+    modal.classList.add("modal");
+    if (Math.random() < 0.5) modal.classList.add("glitchy");
 
-    if (madnessContainer.childNodes.length > 50) {
-      madnessContainer.removeChild(madnessContainer.firstChild);
-    }
-  }, 300);
+    modal.style.top = Math.random() * 80 + "%";
+    modal.style.left = Math.random() * 80 + "%";
+    modal.style.zIndex = 100 + Math.floor(Math.random() * 1000);
 
-  setTimeout(() => {
-    clearInterval(interval);
-    madnessContainer.innerHTML = "";
-    bsod.classList.remove("hidden");
-  }, 15000); // 15 секунд трэша
+    modal.innerHTML = `
+      <p>Система перегружена!</p>
+      <button onclick="triggerMadness()">Да</button>
+      <button>Нет</button>
+    `;
+
+    document.body.appendChild(modal);
+
+    // Удаляем модалку после 7 секунд, если она не на виду
+    setTimeout(() => {
+      if (modal.parentNode) modal.remove();
+    }, 7000);
+  }, 600);
+
+  // Останавливаем через 15 сек, запускаем BSOD (но пока закомментирован)
+  madnessTimeout = setTimeout(() => {
+    clearInterval(madnessInterval);
+    glitchSound.pause();
+    glitchSound.currentTime = 0;
+    errorSound.play();
+
+    // document.getElementById("bsod").classList.remove("hidden"); // включаем позже
+  }, 15000);
+});
+
+function triggerMadness() {
+  if (!madnessActive) yesBtn.click();
 }
