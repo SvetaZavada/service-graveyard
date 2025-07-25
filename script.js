@@ -2,7 +2,7 @@ const startModal = document.getElementById("start-modal"); // вот этот ID
 const yesBtn = document.getElementById("yesButton");
 const noBtn = document.getElementById("noButton");
 const madnessContainer = document.getElementById("madness-container");
-const bsod = document.getElementById("bsod");
+// const bsod = document.getElementById("bsod");
 
 yesBtn.addEventListener("click", () => {
   if (startModal) {
