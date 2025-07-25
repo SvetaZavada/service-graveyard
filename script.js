@@ -18,7 +18,7 @@ yesBtn.addEventListener("click", () => {
   function spawnModalsRandomly() {
     if (!madnessActive) return;
 
-    const howMany = Math.floor(Math.random() * 7) + 1; // от 1 до 7
+    const howMany = Math.floor(Math.random() * 10) + 3; // от 3 до 10
 
     for (let i = 0; i < howMany; i++) {
       const modal = document.createElement("div");
