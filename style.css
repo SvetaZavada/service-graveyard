@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100vh;
-  background-image: url('тут_твой_фон.png');
+  background-image: url('background.png');
   background-repeat: no-repeat;
   background-size: cover; /* или contain, но cover лучше */
   background-position: center;
