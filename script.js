@@ -25,8 +25,8 @@ yesBtn.addEventListener("click", () => {
       modal.classList.add("modal");
       if (Math.random() < 0.5) modal.classList.add("glitchy");
 
-      modal.style.top = Math.random() * 80 + "%";
-      modal.style.left = Math.random() * 80 + "%";
+      modal.style.top = Math.random() * 120 - 10 + "%";
+      modal.style.left = Math.random() * 120 - 10 + "%";
       modal.style.zIndex = 100 + Math.floor(Math.random() * 1000);
 
       modal.innerHTML = `
