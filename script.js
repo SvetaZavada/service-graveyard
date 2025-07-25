@@ -1,4 +1,7 @@
 const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+
+
 const glitchSound = document.getElementById("glitchSound");
 const errorSound = document.getElementById("errorSound");
 const errorSrc = errorSound.querySelector("source").src;
@@ -6,6 +9,10 @@ const errorSrc = errorSound.querySelector("source").src;
 let madnessActive = false;
 let madnessInterval;
 let madnessTimeout;
+
+noBtn.addEventListener("click", () => {
+  window.location.href = "mems.html";
+});
 
 yesBtn.addEventListener("click", () => {
   if (madnessActive) return;
