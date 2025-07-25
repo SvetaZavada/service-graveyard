@@ -60,7 +60,7 @@ yesBtn.addEventListener("click", () => {
     errorSound.play();
 
     // document.getElementById("bsod").classList.remove("hidden"); // включаем позже
-  }, 15000);
+  }, 8000);
 });
 
 function triggerMadness() {
