@@ -1,46 +1,47 @@
-const yesButton = document.getElementById('yes');
-const noButton = document.getElementById('no');
+const container = document.getElementById("modal-container");
 
-yesButton.addEventListener('click', () => {
-  startGlitch();
-  setInterval(spawnPopup, 500);
-});
+// Тексты для рандомизации
+const modalData = [
+  { title: "Восстановление CRM", message: "Вы действительно хотите восстановить CRM?" },
+  { title: "CRM.exe", message: "Файл повреждён. Восстановить?" },
+  { title: "CRM ПРОСЫПАЕТСЯ", message: "Вы уверены, что хотите это сделать?" },
+  { title: "DO_NOT_RESURRECT", message: "Вы разбудили древнее зло. Продолжить?" }
+];
 
-noButton.addEventListener('click', () => {
-  alert('Система не восстановлена.\nПереход в режим наблюдения.');
-  // Можно добавить редирект или показать другую сцену
-});
+// Создание модалки
+function createModal(x, y) {
+  const modal = document.createElement("div");
+  modal.className = "modal";
 
-function startGlitch() {
-  document.body.classList.add('glitch');
-}
+  const { title, message } = modalData[Math.floor(Math.random() * modalData.length)];
 
-function spawnPopup() {
-  const messages = [
-    'Ты правда уверен?',
-    'CRM воскреснет… но по какой цене?',
-    'ERROR_982',
-    'Они наблюдают.',
-    'DO_NOT_RESURRECT',
-    'Зачем ты это сделал?',
-    'Слишком поздно...',
-    '⚠️ System exception occurred'
-  ];
-
-  const popup = document.createElement('div');
-  popup.classList.add('window');
-  popup.style.top = Math.random() * 80 + '%';
-  popup.style.left = Math.random() * 80 + '%';
-
-  popup.innerHTML = `
-    <div class="title-bar">System Alert ✸</div>
-    <div class="window-content">
-      ${messages[Math.floor(Math.random() * messages.length)]}
-      <div class="window-buttons">
-        <button onclick="this.parentElement.parentElement.parentElement.remove()">OK</button>
+  modal.innerHTML = `
+    <div class="modal-header">${title}</div>
+    <div class="modal-content">
+      <p>${message}</p>
+      <div class="modal-buttons">
+        <button>Да</button>
+        <button>Нет</button>
       </div>
     </div>
   `;
 
-  document.body.appendChild(popup);
+  modal.style.left = `${x}px`;
+  modal.style.top = `${y}px`;
+
+  container.appendChild(modal);
 }
+
+// Рандомная генерация модалок по экрану
+function spawnModals() {
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
+  for (let i = 0; i < 15; i++) {
+    const x = Math.random() * (width - 320);
+    const y = Math.random() * (height - 160);
+    createModal(x, y);
+  }
+}
+
+spawnModals();
