@@ -5,8 +5,11 @@ const madnessContainer = document.getElementById("madness-container");
 const bsod = document.getElementById("bsod");
 
 yesBtn.addEventListener("click", () => {
-  startModal.remove();
-  startMadness();
+  const startModal = document.getElementById("start-modal");
+  if (startModal) {
+    startModal.remove(); // скрываем модалку
+  }
+  startMadness(); // начинаем трэш
 });
 
 noBtn.addEventListener("click", () => {
