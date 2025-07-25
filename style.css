@@ -52,6 +52,26 @@ body {
   border-top: none;
   border-left: none;
   border-right: none;
+  align-items: center;
+  justify-content: space-between;
+  height: 30px; /* или сколько тебе нужно */
+  background-color: #0047ab;
+  color: white;
+  font-weight: bold;
+  border-bottom: 3px solid black;
+  padding: 0;
+}
+
+.modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px; /* квадрат */
+  height: 100%;
+  border-left: 2px solid black; /* ← это ТА самая вертикальная линия */
+  cursor: pointer;
+  font-size: 18px;
+  box-sizing: border-box;
 }
 
 .modal-title-wrap {
@@ -68,17 +88,7 @@ body {
   color: white;
 }
 
-.modal-close {
-  width: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  border-left: 2px solid currentColor;
-  cursor: pointer;
-  background-color: #0047ab;
-  color: white;
-}
+
 
 .modal-content {
   padding: 16px;
