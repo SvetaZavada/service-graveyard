@@ -125,7 +125,7 @@ button {
 }
 
 .modal.dark {
-  background-color: #black;
+  background-color: black;
   color: white;
   border: 2px solid white; /* 💥 белая рамка */
   
