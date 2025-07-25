@@ -26,6 +26,15 @@ body {
   border-radius: 0;
 }
 
+.start-model {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100000;      /* поверх всего перед стартом */
+  animation: none;      /* не надо дрожать до “Да” */
+}
+
 button {
   margin: 10px 5px 0;
   padding: 5px 15px;
