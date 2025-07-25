@@ -95,6 +95,7 @@ const errorCode = errorCodes[Math.floor(Math.random() * errorCodes.length)];
     glitchSound.pause();
     glitchSound.currentTime = 0;
     errorSound.play();
+    document.getElementById("start-modal")?.remove(); 
 
     document.getElementById("bsod").classList.remove("hidden"); // включаем позже
   }, 8000);
