@@ -12,6 +12,7 @@ yesBtn.addEventListener("click", () => {
 
   madnessActive = true;
   glitchSound.play();
+  glitchSound.volume = 0.35;
 
    // 🚨 ЗАМЕНА: хаотичный спавн модалок (от 1 до 7), с рандомной задержкой
   function spawnModalsRandomly() {
@@ -68,6 +69,6 @@ function triggerMadness() {
 
 function playErrorPerModal() {
   const a = new Audio(errorSrc);
-  // a.volume = 0.35;   // не оглохнуть
+  a.volume = 1.0;   // не оглохнуть
   a.play().catch(() => {}); // на всякий случай, чтобы не падало в мобайле
 }
