@@ -425,3 +425,30 @@ button {
 .modal.glitchy button:hover {
   background-color: #333;
 }
+
+.glitchy-rgb {
+  color: white;
+  background: transparent;
+  position: relative;
+  display: inline-block;
+  filter:
+    drop-shadow(-1px 0 red)
+    drop-shadow(1px 0 cyan);
+  animation: glitch-rgb 0.3s infinite alternate;
+}
+
+@keyframes glitch-rgb {
+  0% {
+    transform: translateX(-0.5px);
+    filter:
+      drop-shadow(-1px 0 red)
+      drop-shadow(1px 0 cyan);
+  }
+  100% {
+    transform: translateX(0.5px);
+    filter:
+      drop-shadow(-2px 0 red)
+      drop-shadow(2px 0 cyan);
+  }
+}
+
