@@ -119,7 +119,7 @@ yesBtn.addEventListener("click", () => {
 
     document.getElementById("start-modal")?.remove(); 
 
-const bsod = document.getElementById("bsod");
+const bsod = document.getElementById("bsod-preload");
 bsod.style.position = "fixed";
 bsod.style.top = "0";
 bsod.style.left = "0";
