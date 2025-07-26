@@ -34,8 +34,7 @@ function createMadModal({ title = "Ошибка", message = "Что-то пош�
   // Заголовок и крестик — без фона
   const titleWrap = clone.querySelector(".modal-title-wrap");
   const closeBtn = clone.querySelector(".modal-close");
-  if (titleWrap) titleWrap.style.background = "none";
-  if (closeBtn) closeBtn.style.background = "none";
+ 
 
   const titleEl = clone.querySelector(".modal-title");
   if (titleEl) titleEl.textContent = title;
