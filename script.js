@@ -202,15 +202,10 @@ function triggerMadness() {
 
 
 function playErrorPerModal() {
-  if (!sharedErrorSound) {
-    sharedErrorSound = new Audio(errorSrc);
-    sharedErrorSound.volume = 1.0;
-  } else {
-    sharedErrorSound.pause();
-    sharedErrorSound.currentTime = 0;
-  }
-
-  sharedErrorSound.play().catch(() => {});
+  errorSound.pause();
+  errorSound.currentTime = 0;
+  errorSound.volume = 1.0;
+  errorSound.play().catch(() => {});
 }
 
 
