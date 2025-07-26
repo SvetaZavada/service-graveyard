@@ -38,7 +38,11 @@ if (glitch) {
  
 
   const titleEl = clone.querySelector(".modal-title");
-  if (titleEl) titleEl.textContent = title;
+if (titleEl && glitch) {
+  titleEl.innerHTML = `<span class="glitchy-rgb">${title}</span>`;
+} else if (titleEl) {
+  titleEl.textContent = title;
+}
 
   const messageEl = clone.querySelector(".modal-content p");
   if (messageEl) messageEl.textContent = message;
