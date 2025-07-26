@@ -67,7 +67,7 @@ yesBtn.addEventListener("click", () => {
 
   madnessActive = true;
   glitchSound.play();
-  glitchSound.volume = 0.35;
+  glitchSound.volume = 0.25;
 
    // 🚨 ЗАМЕНА: хаотичный спавн модалок (от 1 до 7), с рандомной задержкой
   function spawnModalsRandomly() {
@@ -95,7 +95,7 @@ yesBtn.addEventListener("click", () => {
   message: size === "small" ? "Критическая ошибка" : "Система перегружена!",
   size,
   dark: theme === "dark",
-  glitch: Math.random() < 0.3,
+  glitch: Math.random() < 0.5,
   headerColor
 });
 
