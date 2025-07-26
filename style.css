@@ -282,3 +282,88 @@ button {
   color: white;
   border-bottom: 3px solid black;
 }
+
+/* === Light Theme === */
+.modal.light {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+}
+
+.modal.light .modal-header {
+  background-color: #0047ab;
+  color: white;
+  border-bottom: 3px solid black;
+}
+
+.modal.light .modal-title-wrap,
+.modal.light .modal-close {
+  background: none;
+  color: white;
+  border-color: black;
+}
+
+.modal.light .modal-content {
+  background-color: white;
+  color: black;
+}
+
+.modal.light button {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
+}
+
+.modal.light button:hover {
+  background-color: #ddd;
+}
+
+/* === Dark Theme === */
+.modal.dark {
+  background-color: black;
+  color: white;
+  border: 2px solid white;
+}
+
+.modal.dark .modal-header {
+  background-color: #111;
+  color: white;
+  border-bottom: 3px solid white;
+}
+
+.modal.dark .modal-title-wrap,
+.modal.dark .modal-close {
+  background: none;
+  color: white;
+  border-color: white;
+}
+
+.modal.dark .modal-content {
+  background-color: black;
+  color: white;
+}
+
+.modal.dark button {
+  background-color: black;
+  color: white;
+  border: 2px solid white;
+}
+
+.modal.dark button:hover {
+  background-color: #333;
+}
+
+/* === Glitch Overlay (поверх темы) === */
+.modal.glitchy {
+  animation: glitch 0.8s infinite steps(2, end);
+}
+
+.modal.glitchy button {
+  background-color: #111;
+  color: #fff;
+  border-color: white;
+}
+
+.modal.glitchy button:hover {
+  background-color: #333;
+}
