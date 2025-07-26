@@ -1,3 +1,4 @@
+let allowModals = true;
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 const headerColors = {
@@ -14,6 +15,7 @@ let madnessInterval;
 let madnessTimeout;
 
 function createMadModal({ title = "Ошибка", message = "Что-то пошло не так...", size = "normal", dark = false, glitch = false, headerColor = null }) {
+  if (!allowModals) return; // 💣 Стоп, если модалки больше нельзя
   const original = document.getElementById("start-modal");
   const clone = original.cloneNode(true);
 
@@ -111,14 +113,22 @@ yesBtn.addEventListener("click", () => {
 
   // Останавливаем через 15 сек, запускаем BSOD (но пока закомментирован)
   madnessTimeout = setTimeout(() => {
-  clearInterval(madnessInterval);
+    allowModals = false; // 🧯 Останавливаем любые модалки
+clearTimeout(madnessInterval);
+  
   glitchSound.pause();
   glitchSound.currentTime = 0;
   errorSound.play();
   document.getElementById("start-modal")?.remove();
+document.querySelectorAll(".modal").forEach(el => el.remove());
+
 
   const bsod = document.getElementById("bsod-preload");
   if (bsod) {
+    document.body.style.overflow = "hidden";
+document.documentElement.style.overflow = "hidden";
+document.body.scrollLeft = 0;
+document.documentElement.scrollLeft = 0;
     bsod.style.position = "fixed";
     bsod.style.left = "0";
     bsod.style.top = "0";
@@ -145,9 +155,10 @@ function triggerMadness() {
 }
 
 function playErrorPerModal() {
+  if (!allowModals) return; // 💡 На всякий случай
   const a = new Audio(errorSrc);
-  a.volume = 1.0;   // не оглохнуть
-  a.play().catch(() => {}); // на всякий случай, чтобы не падало в мобайле
+  a.volume = 1.0;
+  a.play().catch(() => {});
 }
 
 function applyRandomGlitch(modal) {
