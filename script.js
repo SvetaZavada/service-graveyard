@@ -2,7 +2,7 @@ const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 const headerColors = {
   light: ["#0047ab", "#008080", "#6a5acd", "#2f4f4f"],
-  dark: ["#ff69b4", "#9370DB", "#00CED1", "#DC143C"]
+  dark: ["#00ffff", "#00ff00", "#ff1493", "#ffffff"]
 };
 
 const glitchSound = document.getElementById("glitchSound");
