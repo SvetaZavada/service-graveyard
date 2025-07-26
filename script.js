@@ -143,10 +143,8 @@ yesBtn.addEventListener("click", () => {
   spawnModalsRandomly();
 
   // Останавливаем через 15 сек, запускаем BSOD (но пока закомментирован)
-  madnessTimeout = setTimeout(() => {
-    allowModals = false; // 🧯 Останавливаем любые модалки
-clearTimeout(madnessInterval);
-  
+
+  setTimeout(() => {
   glitchSound.pause();
   glitchSound.currentTime = 0;
 
@@ -154,9 +152,8 @@ clearTimeout(madnessInterval);
     sharedErrorSound.pause();
     sharedErrorSound.currentTime = 0;
   }
-    
-  errorSound.play();
-      // 🧹 Глушим все <audio> на странице
+
+  // 🧹 Глушим все аудио
   document.querySelectorAll("audio").forEach(audio => {
     try {
       audio.pause();
@@ -164,9 +161,13 @@ clearTimeout(madnessInterval);
     } catch {}
   });
 
-  document.getElementById("start-modal")?.remove();
-document.querySelectorAll(".modal").forEach(el => el.remove());
-
+  // 🎵 Играем звук ошибки, теперь без какафонии
+  errorSound.play();
+}, 5500);
+  
+  madnessTimeout = setTimeout(() => {
+  allowModals = false;
+  clearTimeout(madnessInterval);
 
   const bsod = document.getElementById("bsod-preload");
   if (bsod) {
