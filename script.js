@@ -6,27 +6,6 @@ const headerColors = {
   dark: ["#00ffff", "#00ff00", "#ff1493", "#ffffff"]
 };
 
-const messagesBySize = {
-  small: [
-    "💥 Критическая ошибка",
-    "⛔ Неустранимый сбой",
-    "🧨 Ошибка ядра системы"
-  ],
-  normal: [
-    "🔄 Перезагрузка в процессе",
-    "🌀 Система перегружена!",
-    "⚠️ Попытка восстановления памяти"
-  ],
-  large: [
-    "📉 Вся структура рушится",
-    "👁 Взлом защитного контура",
-    "🔥 Процесс вышел из-под контроля"
-  ]
-};
-
-const messageList = messagesBySize[size] || ["⚠️ Что-то пошло не так..."];
-const message = messageList[Math.floor(Math.random() * messageList.length)];
-
 
 const glitchSound = document.getElementById("glitchSound");
 const errorSound = document.getElementById("errorSound");
