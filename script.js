@@ -128,7 +128,7 @@ function playErrorPerModal() {
 }
 
 function applyRandomGlitch(modal) {
-  const glitchClasses = ['glitchy-1', 'glitchy-2', 'glitchy-3'];
+  const glitchClasses = ['glitchy-1', 'glitchy-2', 'glitchy-3', 'glitchy-rgb'];
   const randomClass = glitchClasses[Math.floor(Math.random() * glitchClasses.length)];
   modal.classList.add('glitchy', randomClass);
 }
