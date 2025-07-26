@@ -248,6 +248,33 @@ button {
   100% { clip-path: inset(0 0 0 0); }
 }
 
+@keyframes rgbSplit {
+  0% {
+    filter: none;
+    transform: translate(0, 0);
+  }
+  25% {
+    filter: drop-shadow(-2px 0 red) drop-shadow(2px 0 cyan);
+    transform: translate(-1px, 0);
+  }
+  50% {
+    filter: drop-shadow(2px 0 red) drop-shadow(-2px 0 cyan);
+    transform: translate(1px, 0);
+  }
+  75% {
+    filter: drop-shadow(-1px 0 red) drop-shadow(1px 0 cyan);
+    transform: translate(-1px, 0);
+  }
+  100% {
+    filter: none;
+    transform: translate(0, 0);
+  }
+}
+
+.glitchy-rgb {
+  animation: rgbSplit 0.3s infinite;
+}
+
 #overlay::after {
   content: '';
   position: fixed;
