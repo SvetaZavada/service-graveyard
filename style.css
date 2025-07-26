@@ -19,12 +19,9 @@ body {
   left: 30%;
   width: 300px;
   padding: 0px;
-  border: 4px solid black;
   z-index: 1000;
   animation: shake 0.3s infinite alternate;
   border-radius: 0;
-  background: white;
-  color: black;
   display: flex;
   flex-direction: column;
 }
