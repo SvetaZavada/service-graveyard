@@ -117,7 +117,22 @@ yesBtn.addEventListener("click", () => {
     errorSound.play();
     document.getElementById("start-modal")?.remove(); 
 
-    document.getElementById("bsod").style.visibility = "visible";
+    document.getElementById("start-modal")?.remove(); 
+
+const bsod = document.getElementById("bsod");
+bsod.style.position = "fixed";
+bsod.style.top = "0";
+bsod.style.left = "0";
+bsod.style.width = "100vw";
+bsod.style.height = "100vh";
+bsod.style.zIndex = "9999";
+bsod.style.opacity = "1";
+bsod.style.display = "flex";
+bsod.style.justifyContent = "center";
+bsod.style.alignItems = "center";
+bsod.style.padding = "20px";
+bsod.style.pointerEvents = "auto";
+bsod.style.fontFamily = "'IBM Plex Mono', monospace";
   }, 6000);
 });
 
