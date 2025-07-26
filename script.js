@@ -1,7 +1,7 @@
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 const headerColors = {
-  light: ["#0047ab", "#008080", "#6a5acd", "#2f4f4f"],
+  light: ["#0047ab"],
   dark: ["#00ffff", "#00ff00", "#ff1493", "#ffffff"]
 };
 
