@@ -111,29 +111,33 @@ yesBtn.addEventListener("click", () => {
 
   // Останавливаем через 15 сек, запускаем BSOD (но пока закомментирован)
   madnessTimeout = setTimeout(() => {
-    clearInterval(madnessInterval);
-    glitchSound.pause();
-    glitchSound.currentTime = 0;
-    errorSound.play();
-    document.getElementById("start-modal")?.remove(); 
+  clearInterval(madnessInterval);
+  glitchSound.pause();
+  glitchSound.currentTime = 0;
+  errorSound.play();
+  document.getElementById("start-modal")?.remove();
 
-    document.getElementById("start-modal")?.remove(); 
+  const bsod = document.getElementById("bsod-preload");
+  if (bsod) {
+    bsod.style.position = "fixed";
+    bsod.style.left = "0";
+    bsod.style.top = "0";
+    bsod.style.width = "100vw";
+    bsod.style.height = "100vh";
+    bsod.style.zIndex = "9999";
+    bsod.style.display = "flex";
+    bsod.style.justifyContent = "center";
+    bsod.style.alignItems = "center";
+    bsod.style.padding = "20px";
+    bsod.style.pointerEvents = "auto";
+    bsod.style.fontFamily = "'IBM Plex Mono', monospace";
+    bsod.style.background = "#0000AA";
+    bsod.style.color = "white";
+    bsod.style.visibility = "visible";
+    bsod.style.opacity = "1";
+  }
+}, 6000);
 
-const bsod = document.getElementById("bsod-preload");
-bsod.style.position = "fixed";
-bsod.style.top = "0";
-bsod.style.left = "0";
-bsod.style.width = "100vw";
-bsod.style.height = "100vh";
-bsod.style.zIndex = "9999";
-bsod.style.opacity = "1";
-bsod.style.display = "flex";
-bsod.style.justifyContent = "center";
-bsod.style.alignItems = "center";
-bsod.style.padding = "20px";
-bsod.style.pointerEvents = "auto";
-bsod.style.fontFamily = "'IBM Plex Mono', monospace";
-  }, 6000);
 });
 
 function triggerMadness() {
