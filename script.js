@@ -19,8 +19,9 @@ function createMadModal({ title = "Ошибка", message = "Что-то пош�
 
   clone.classList.remove("start-model", "light", "dark", "small", "normal", "large");
   clone.classList.add(size, dark ? "dark" : "light");
-  if (glitch) clone.classList.add("glitchy");
-
+if (glitch) {
+  applyRandomGlitch(clone); // это сразу добавляет .glitchy и один из рандомных классов
+}
   clone.style.top = Math.random() * 120 - 10 + "%";
   clone.style.left = Math.random() * 120 - 10 + "%";
   clone.style.zIndex = 100 + Math.floor(Math.random() * 1000);
@@ -124,4 +125,10 @@ function playErrorPerModal() {
   const a = new Audio(errorSrc);
   a.volume = 1.0;   // не оглохнуть
   a.play().catch(() => {}); // на всякий случай, чтобы не падало в мобайле
+}
+
+function applyRandomGlitch(modal) {
+  const glitchClasses = ['glitchy-1', 'glitchy-2', 'glitchy-3'];
+  const randomClass = glitchClasses[Math.floor(Math.random() * glitchClasses.length)];
+  modal.classList.add('glitchy', randomClass);
 }
