@@ -5,69 +5,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Madness Mode</title>
   <link rel="stylesheet" href="style.css" />
-<link rel="preload" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" as="style" onload="this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap"></noscript>
-
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" as="style" onload="this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap">
+  </noscript>
 </head>
 <body>
   <div id="overlay"></div> <!-- этот для глитча -->
-  
-<div id="start-modal" class="modal light normal start-model">
-  <div class="modal-header">
-    <div class="modal-title-wrap">
-      <span class="modal-title">Restore CRM</span>
+
+  <div id="start-modal" class="modal light normal start-model">
+    <div class="modal-header">
+      <div class="modal-title-wrap">
+        <span class="modal-title">Restore CRM</span>
+      </div>
+      <div class="modal-close" aria-hidden="true">✕</div>
     </div>
-    <div class="modal-close" aria-hidden="true">✕</div>
-  </div>
-  
-  <div class="modal-content">
-    <p>Вы действительно хотите восстановить CRM?</p>
-    <div class="button-wrap">
-      <button id="yesBtn">Да</button>
-      <button id="noBtn">Нет</button>
+    
+    <div class="modal-content">
+      <p>Вы действительно хотите восстановить CRM?</p>
+      <div class="button-wrap">
+        <button id="yesBtn">Да</button>
+        <button id="noBtn">Нет</button>
+      </div>
     </div>
   </div>
-</div>
 
-
-<!-- Синий экран -->
- 
-<div id="bsod" style="
-  background: #0000AA;
-  color: white;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 18px;
-  line-height: 1.2;
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  text-align: left;
-  visibility: hidden;
-">
-
-  <div style="
-    max-width: 600px;
-    width: 90%;
+  <!-- Основной BSOD, который появится по триггеру -->
+  <div id="bsod" style="
+    background: #0000AA;
+    color: white;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 18px;
+    line-height: 1.2;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: left;
+    visibility: hidden;
   ">
-    <h1 style="
-      font-size: 72px;
-      margin-bottom: 24px;
-      text-align: left;
-    ">:(</h1>
+    <div style="max-width: 600px; width: 90%;">
+      <h1 style="font-size: 72px; margin-bottom: 24px; text-align: left;">:(</h1>
+      <p>Ваш сервис столкнулся с проблемой и должен быть закрыт.</p>
+      <p>Код ошибки: 0xDEADC0DE</p>
+      <p>Перезагрузите страницу, чтобы продолжить страдать...</p>
+    </div>
+  </div>
 
+  <!-- Приманка для прогрузки шрифта и верстки -->
+  <div id="bsod-preload" style="
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 18px;
+    line-height: 1.2;
+    visibility: visible;
+    opacity: 0;
+    pointer-events: none;
+  ">
+    <h1 style="font-size: 72px;">:(</h1>
     <p>Ваш сервис столкнулся с проблемой и должен быть закрыт.</p>
-
     <p>Код ошибки: 0xDEADC0DE</p>
-
     <p>Перезагрузите страницу, чтобы продолжить страдать...</p>
   </div>
-
-</div>
-
 
   <audio id="glitchSound" loop>
     <source src="glitch.mp3" type="audio/mpeg" />
