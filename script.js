@@ -119,6 +119,14 @@ clearTimeout(madnessInterval);
   glitchSound.pause();
   glitchSound.currentTime = 0;
   errorSound.play();
+      // 🧹 Глушим все <audio> на странице
+  document.querySelectorAll("audio").forEach(audio => {
+    try {
+      audio.pause();
+      audio.currentTime = 0;
+    } catch {}
+  });
+
   document.getElementById("start-modal")?.remove();
 document.querySelectorAll(".modal").forEach(el => el.remove());
 
