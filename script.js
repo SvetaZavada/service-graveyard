@@ -10,6 +10,57 @@ let madnessActive = false;
 let madnessInterval;
 let madnessTimeout;
 
+function createMadModal({ title = "Ошибка", message = "Что-то пошло не так...", size = "normal", dark = false, glitch = false }) {
+  const original = document.getElementById("start-modal");
+  const clone = original.cloneNode(true);
+
+  clone.classList.remove("start-model");
+  clone.classList.remove("light", "dark");
+  clone.classList.remove("small", "normal", "large");
+
+  clone.classList.add(size);
+  clone.classList.add(dark ? "dark" : "light");
+
+  if (glitch) {
+    clone.classList.add("glitchy");
+  }
+
+  // случайная позиция
+  clone.style.top = Math.random() * 120 - 10 + "%";
+  clone.style.left = Math.random() * 120 - 10 + "%";
+  clone.style.zIndex = 100 + Math.floor(Math.random() * 1000);
+
+  // меняем заголовок
+  const titleEl = clone.querySelector(".modal-title");
+  if (titleEl) titleEl.textContent = title;
+
+  // меняем сообщение
+  const messageEl = clone.querySelector(".modal-content p");
+  if (messageEl) messageEl.textContent = message;
+
+  // можно добавить кастомную логику на кнопки, если хочешь
+  const yes = clone.querySelector("button#yesBtn");
+  const no = clone.querySelector("button#noBtn");
+
+  if (yes) {
+    yes.onclick = triggerMadness;
+  }
+
+  if (no) {
+    no.onclick = () => {};
+  }
+
+  // добавляем в DOM
+  document.body.appendChild(clone);
+
+  // удалим через 7 секунд
+  setTimeout(() => {
+    if (clone.parentNode) clone.remove();
+  }, 7000);
+
+  playErrorPerModal();
+}
+
 noBtn.addEventListener("click", () => {
   window.location.href = "mems.html";
 });
@@ -23,68 +74,36 @@ yesBtn.addEventListener("click", () => {
 
    // 🚨 ЗАМЕНА: хаотичный спавн модалок (от 1 до 7), с рандомной задержкой
   function spawnModalsRandomly() {
-    if (!madnessActive) return;
+  if (!madnessActive) return;
 
-    const howMany = Math.floor(Math.random() * 10) + 3; // от 3 до 10
+  const howMany = Math.floor(Math.random() * 10) + 3; // от 3 до 10
 
-    for (let i = 0; i < howMany; i++) {
-      const modal = document.createElement("div");
-      modal.classList.add("modal");
+  for (let i = 0; i < howMany; i++) {
+    // Размер
+    const sizes = ["small", "normal", "large"];
+    const size = sizes[Math.floor(Math.random() * sizes.length)];
 
-// Размер
-const sizes = ["small", "normal", "large"];
-const size = sizes[Math.floor(Math.random() * sizes.length)];
-modal.classList.add(size);
+    // Тема
+    const themes = ["light", "dark"];
+    const theme = themes[Math.floor(Math.random() * themes.length)];
 
-// Тема
-const themes = ["light", "dark"];
-const theme = themes[Math.floor(Math.random() * themes.length)];
-modal.classList.add(theme);
+    // Рандомный код ошибки
+    const errorCodes = ["0xDEADFADE", "0xBADA55", "0xFA1LURE", "0xC0FFEE", "0xABADBABE", "0xBADCAFFE"];
+    const errorCode = errorCodes[Math.floor(Math.random() * errorCodes.length)];
 
-// Цвет шапки (по теме)
-const headerColors = {
-  light: ["#0047ab", "#008080"],
-  dark: ["#ff69b4", "#9370DB", "#00CED1"]
-};
-const headerColor = headerColors[theme][Math.floor(Math.random() * headerColors[theme].length)];
-
-// Рандомный код ошибки
-const errorCodes = ["0xDEADFADE", "0xBADA55", "0xFA1LURE", "0xC0FFEE", "0xABADBABE", "0xBADCAFFE"];
-const errorCode = errorCodes[Math.floor(Math.random() * errorCodes.length)];
-
-
-      modal.style.top = Math.random() * 120 - 10 + "%";
-      modal.style.left = Math.random() * 120 - 10 + "%";
-      modal.style.zIndex = 100 + Math.floor(Math.random() * 1000);
-
-      modal.innerHTML = `
-  <div class="modal-header">
-    <span class="modal-title">${errorCode}</span>
-  </div>
-  ${
-    size === "small"
-      ? `<p class="modal-text">Критическая ошибка</p>`
-      : `
-        <p class="modal-text">Система перегружена!</p>
-        <button onclick="triggerMadness()">Да</button>
-        <button>Нет</button>
-      `
+    createMadModal({
+      title: errorCode,
+      message: size === "small" ? "Критическая ошибка" : "Система перегружена!",
+      size,
+      dark: theme === "dark",
+      glitch: Math.random() < 0.3 // 30% шанс на глитч
+    });
   }
-`;
 
-      document.body.appendChild(modal);
-      playErrorPerModal();
-
-      // Удаляем модалку через 7 секунд
-      setTimeout(() => {
-        if (modal.parentNode) modal.remove();
-      }, 7000);
-    }
-
-    // Следующий вызов через случайное время (от 100 до 600 мс)
-    const nextDelay = Math.random() * 500 + 100;
-    madnessInterval = setTimeout(spawnModalsRandomly, nextDelay);
-  }
+  // Следующий вызов через случайное время (от 100 до 600 мс)
+  const nextDelay = Math.random() * 500 + 100;
+  madnessInterval = setTimeout(spawnModalsRandomly, nextDelay);
+}
 
   // Стартуем хаос
   spawnModalsRandomly();
