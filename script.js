@@ -112,6 +112,17 @@ yesBtn.addEventListener("click", () => {
     const sizes = ["small", "normal", "large"];
     const size = sizes[Math.floor(Math.random() * sizes.length)];
 
+    // 💬 Сообщения по размеру
+const messagesBySize = {
+  small: ["⚠️ Критическая ошибка", "🧨 Перегрузка памяти", "💥 Сбой доступа"],
+  normal: ["🔥 Система перегружена", "📛 Необратимая ошибка", "☢️ Процесс вышел из-под контроля"],
+  large: ["🧠 Безумие захлестнуло систему", "👁 Наблюдение активировано", "🌀 Мы теряем контроль"]
+};
+
+const messageList = messagesBySize[size] || ["⚠️ Что-то пошло не так..."];
+const message = messageList[Math.floor(Math.random() * messageList.length)];
+
+
     // Тема
     const themes = ["light", "dark"];
     const theme = themes[Math.floor(Math.random() * themes.length)];
