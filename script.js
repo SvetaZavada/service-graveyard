@@ -128,8 +128,17 @@ function playErrorPerModal() {
 }
 
 function applyRandomGlitch(modal) {
-  const extraGlitchClasses = ['glitchy-1', 'glitchy-2', 'glitchy-3'];
-  const randomExtra = extraGlitchClasses[Math.floor(Math.random() * extraGlitchClasses.length)];
-  
-  modal.classList.add('glitchy', 'glitchy-rgb', randomExtra);
+  const glitchClasses = ['glitchy-1', 'glitchy-2', 'glitchy-3', 'glitchy-rgb'];
+  const randomClass = glitchClasses[Math.floor(Math.random() * glitchClasses.length)];
+
+  modal.classList.add('glitchy', randomClass);
+
+  // ✨ Добавляем RGB-глитч отдельно на заголовок
+  if (randomClass === 'glitchy-rgb') {
+    const header = modal.querySelector('.modal-header');
+    if (header) {
+      header.classList.add('glitchy-rgb');
+    }
+  }
 }
+
