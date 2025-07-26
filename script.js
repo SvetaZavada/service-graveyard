@@ -6,15 +6,45 @@ const headerColors = {
   dark: ["#00ffff", "#00ff00", "#ff1493", "#ffffff"]
 };
 
+
+
 const glitchSound = document.getElementById("glitchSound");
 const errorSound = document.getElementById("errorSound");
 const errorSrc = errorSound.querySelector("source").src;
+
+glitchSound.load();
+errorSound.load();
+
 
 let sharedErrorSound = null;
 let madnessActive = false;
 let madnessInterval;
 let madnessTimeout;
 
+// Пробуждение звуков на первое взаимодействие
+function unlockAudio() {
+  [glitchSound, errorSound].forEach(audio => {
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          audio.pause();
+          audio.currentTime = 0;
+        })
+        .catch(err => {
+          // Safari может ругнуться — игнорируем
+        });
+    }
+  });
+  // Удаляем слушатели — больше не нужно
+  document.removeEventListener("click", unlockAudio);
+  document.removeEventListener("touchstart", unlockAudio);
+}
+
+// Добавим слушатель на первое взаимодействие
+document.addEventListener("click", unlockAudio, { once: true });
+document.addEventListener("touchstart", unlockAudio, { once: true });
+  
 function createMadModal({ title = "Ошибка", message = "Что-то пошло не так...", size = "normal", dark = false, glitch = false, headerColor = null }) {
   if (!allowModals) return; // 💣 Стоп, если модалки больше нельзя
   const original = document.getElementById("start-modal");
