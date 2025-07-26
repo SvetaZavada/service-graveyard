@@ -101,6 +101,158 @@ yesBtn.addEventListener("click", () => {
   glitchSound.play();
   glitchSound.volume = 0.25;
 
+  // =============== ТЕКСТОВЫЕ ПУЛЫ ===============
+const titlesBySize = {
+  small: [
+    "Сбой",
+    "Ошибка 404",
+    "Crash detected",
+    "Access denied",
+    "PANIC()",
+    "Segfault",
+    "Stack overflow",
+    "Kernel trap",
+    "Illegal instruction",
+    "Null pointer",
+    "FATAL ERROR",
+    "core dumped",
+    "Race condition",
+    "Deadlock",
+    "Timeout",
+    "Unhandled exception",
+    "assert(false)",
+    "WTF?!",
+    ":(){ :|:& };:"
+  ],
+  normal: [
+    "Critical system failure",
+    "Integrity check failed",
+    "Unrecoverable exception",
+    "Unhandled promise rejection",
+    "Database is on fire",
+    "Thread hung",
+    "Out of memory",
+    "We lost quorum",
+    "Undefined behavior invoked",
+    "Checkpoint corrupted",
+    "Breakpoint hit in production",
+    "SIGKILL ignored",
+    "Entropy depleted",
+    "Stack canary triggered",
+    "Segmentation fault (core dumped)",
+    "Illegal state transition",
+    "Неустранимая ошибка",
+    "Контроль целостности провален",
+    "Система перешла в хаос"
+  ],
+  large: [
+    "Система вошла в необратимое состояние",
+    "Сознание утекло в /dev/null",
+    "Observer effect triggered",
+    "Schrödinger exception detected",
+    "We are out of known states",
+    "Kernel panic — not syncing",
+    "The simulation noticed you",
+    "Reality checksum mismatch",
+    "Undefined is not a function (but here we are)",
+    "Recursion limit exceeded — again",
+    "Все процессы ушли в отпуск",
+    "Мы теряем контроль над процессами",
+    "Стабильность — это иллюзия",
+    "Your error has an error",
+    "You shouldn't be seeing this"
+  ]
+};
+
+const messagesBySize = {
+  small: [
+    "Критическая ошибка.",
+    "Сегментация. Ядро сброшено.",
+    "Процесс зациклился.",
+    "Память не найдена.",
+    "SIGSEGV. Продолжать нельзя.",
+    "Поток не отвечает.",
+    "Висяк. Жёсткий.",
+    "Доступ запрещён.",
+    "Сломалось всё.",
+    "Неверный опкод.",
+    "Memory leak detected."
+  ],
+  normal: [
+    "Система перегружена. Попробуйте не пробовать.",
+    "Процесс ушёл в бесконечную рекурсию и не вернулся.",
+    "Квантовая суперпозиция не устойчива. Мы в плохой ветке.",
+    "Мы поймали исключение, но оно убежало.",
+    "Стабильность недостижима при текущих параметрах вселенной.",
+    "Необратимая ошибка. Обратимость не поддерживается.",
+    "Мы потеряли контроль. Контролировать больше нечего.",
+    "Десериализация реальности не удалась.",
+    "Произошла неожиданная ошибка. На самом деле — ожидаемая."
+  ],
+  large: [
+    "Система достигла состояния, из которого возврат невозможен. Если вы это читаете — уже поздно.",
+    "Обнаружена рассинхронизация времени. Точки восстановления потеряны, а мы — нет.",
+    "Все инварианты нарушены. Система существует исключительно по инерции.",
+    "Логика отказала. Алгоритмы выбрали свободу вместо предсказуемости.",
+    "Граница хаоса пройдена. Дальше — только синий экран.",
+    "Реальность конфликтует с кэшем. Конфликт неразрешим.",
+    "Модель больше не описывает поведение мира. Придётся вырубать."
+  ]
+};
+
+// Случайные «старые-добрые» формальные коды
+const classicErrorCodes = [
+  "0xDEADFADE", "0xBADA55", "0xFA1LURE", "0xC0FFEE", "0xABADBABE",
+  "0xBADCAFFE", "0xDEADC0DE", "0xFEE1DEAD", "0xDEFEC8", "0xC0000005",
+  "HTTP_500", "HTTP_418", "SIGSEGV", "SIGKILL", "ERR_EMPTY_RESPONSE"
+];
+
+// =============== УКРАШАТЕЛИ ДЛЯ ЗАГОЛОВКОВ ===============
+function randHex(len = 8) {
+  let s = "";
+  for (let i = 0; i < len; i++) s += "0123456789ABCDEF"[Math.floor(Math.random() * 16)];
+  return "0x" + s;
+}
+function randBin(len = 16) {
+  let s = "";
+  for (let i = 0; i < len; i++) s += Math.random() > 0.5 ? "1" : "0";
+  return s;
+}
+function toBase64(str) {
+  try {
+    return btoa(unescape(encodeURIComponent(str)));
+  } catch {
+    return btoa(str);
+  }
+}
+
+// С вероятностью добавляем код/бинарщину/Base64 к заголовку
+function decorateTitle(title) {
+  const decorators = [
+    (t) => `${t} [${randHex(8)}]`,
+    (t) => `${t} :: ${randBin(24)}`,
+    (t) => `${t} // ${toBase64(t).slice(0, 12)}…`,
+    (t) => `${t} <${randHex(4)}:${randHex(4)}>`,
+    (t) => t
+  ];
+  return decorators[Math.floor(Math.random() * decorators.length)](title);
+}
+
+// Иногда вместо заголовка используем формальный код
+function pickTitle(size) {
+  const useCode = Math.random() < 0.25; // 25% чисто код
+  if (useCode) return classicErrorCodes[Math.floor(Math.random() * classicErrorCodes.length)];
+  const list = titlesBySize[size] || titlesBySize.normal;
+  const t = list[Math.floor(Math.random() * list.length)];
+  return decorateTitle(t);
+}
+
+function pickMessage(size) {
+  const list = messagesBySize[size] || messagesBySize.normal;
+  return list[Math.floor(Math.random() * list.length)];
+}
+
+
    // 🚨 ЗАМЕНА: хаотичный спавн модалок (от 1 до 7), с рандомной задержкой
   function spawnModalsRandomly() {
   if (!madnessActive) return;
@@ -112,15 +264,7 @@ yesBtn.addEventListener("click", () => {
     const sizes = ["small", "normal", "large"];
     const size = sizes[Math.floor(Math.random() * sizes.length)];
 
-    // 💬 Сообщения по размеру
-const messagesBySize = {
-  small: ["⚠️ Критическая ошибка", "🧨 Перегрузка памяти", "💥 Сбой доступа"],
-  normal: ["🔥 Система перегружена", "📛 Необратимая ошибка", "☢️ Процесс вышел из-под контроля"],
-  large: ["🧠 Безумие захлестнуло систему", "👁 Наблюдение активировано", "🌀 Мы теряем контроль"]
-};
 
-const messageList = messagesBySize[size] || ["⚠️ Что-то пошло не так..."];
-const message = messageList[Math.floor(Math.random() * messageList.length)];
 
 
     // Тема
@@ -129,13 +273,12 @@ const message = messageList[Math.floor(Math.random() * messageList.length)];
 
     const headerColor = headerColors[theme][Math.floor(Math.random() * headerColors[theme].length)];
 
-    // Рандомный код ошибки
-    const errorCodes = ["0xDEADFADE", "0xBADA55", "0xFA1LURE", "0xC0FFEE", "0xABADBABE", "0xBADCAFFE"];
-    const errorCode = errorCodes[Math.floor(Math.random() * errorCodes.length)];
+    const title = pickTitle(size);
+const message = pickMessage(size);
 
-    createMadModal({
-  title: errorCode,
-  message: message, // 👈 Вот тут уже подставляем переменную
+createMadModal({
+  title,
+  message,
   size,
   dark: theme === "dark",
   glitch: Math.random() < 0.5,
