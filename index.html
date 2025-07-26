@@ -57,21 +57,32 @@
 
   <!-- Приманка для прогрузки шрифта и верстки -->
   <div id="bsod-preload" style="
-    position: absolute;
-    left: -9999px;
-    top: -9999px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 18px;
-    line-height: 1.2;
-    visibility: visible;
-    opacity: 0;
-    pointer-events: none;
-  ">
-    <h1 style="font-size: 72px;">:(</h1>
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 18px;
+  line-height: 1.2;
+  visibility: visible;
+  opacity: 0;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: #0000AA;
+  color: white;
+  padding: 20px;
+  text-align: left;
+">
+  <div style="max-width: 600px; width: 90%; text-align: left;">
+    <h1 style="font-size: 72px; margin-bottom: 24px;">:(</h1>
     <p>Ваш сервис столкнулся с проблемой и должен быть закрыт.</p>
     <p>Код ошибки: 0xDEADC0DE</p>
     <p>Перезагрузите страницу, чтобы продолжить страдать...</p>
   </div>
+</div>
 
   <audio id="glitchSound" loop>
     <source src="glitch.mp3" type="audio/mpeg" />
