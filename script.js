@@ -10,6 +10,7 @@ const glitchSound = document.getElementById("glitchSound");
 const errorSound = document.getElementById("errorSound");
 const errorSrc = errorSound.querySelector("source").src;
 
+let sharedErrorSound = null;
 let madnessActive = false;
 let madnessInterval;
 let madnessTimeout;
@@ -118,6 +119,12 @@ clearTimeout(madnessInterval);
   
   glitchSound.pause();
   glitchSound.currentTime = 0;
+
+  if (sharedErrorSound) {
+    sharedErrorSound.pause();
+    sharedErrorSound.currentTime = 0;
+  }
+    
   errorSound.play();
       // 🧹 Глушим все <audio> на странице
   document.querySelectorAll("audio").forEach(audio => {
@@ -162,12 +169,20 @@ function triggerMadness() {
   if (!madnessActive) yesBtn.click();
 }
 
+
+
 function playErrorPerModal() {
-  if (!allowModals) return; // 💡 На всякий случай
-  const a = new Audio(errorSrc);
-  a.volume = 1.0;
-  a.play().catch(() => {});
+  if (!sharedErrorSound) {
+    sharedErrorSound = new Audio(errorSrc);
+    sharedErrorSound.volume = 1.0;
+  } else {
+    sharedErrorSound.pause();
+    sharedErrorSound.currentTime = 0;
+  }
+
+  sharedErrorSound.play().catch(() => {});
 }
+
 
 function applyRandomGlitch(modal) {
   const glitchClasses = ['glitchy-1', 'glitchy-2', 'glitchy-3', 'glitchy-rgb'];
