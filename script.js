@@ -69,7 +69,7 @@ yesBtn.addEventListener("click", () => {
   function spawnModalsRandomly() {
   if (!madnessActive) return;
 
-  const howMany = Math.floor(Math.random() * 10) + 3; // от 3 до 10
+  const howMany = Math.floor(Math.random() * 20) + 7; // от 3 до 10
 
   for (let i = 0; i < howMany; i++) {
     // Размер
