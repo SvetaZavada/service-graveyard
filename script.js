@@ -114,7 +114,7 @@ yesBtn.addEventListener("click", () => {
     document.getElementById("start-modal")?.remove(); 
 
     document.getElementById("bsod").classList.remove("hidden"); // включаем позже
-  }, 8000);
+  }, 6000);
 });
 
 function triggerMadness() {
