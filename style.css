@@ -357,10 +357,7 @@ button {
   background-color: #333;
 }
 
-/* === Glitch Overlay (поверх темы) === */
-.modal.glitchy {
-  animation: glitch 0.8s infinite steps(2, end);
-}
+
 
 .modal.glitchy button {
   background-color: #111;
