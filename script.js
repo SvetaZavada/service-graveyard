@@ -1,6 +1,9 @@
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
-
+const headerColors = {
+  light: ["#0047ab", "#008080", "#6a5acd", "#2f4f4f"],
+  dark: ["#ff69b4", "#9370DB", "#00CED1", "#DC143C"]
+};
 
 const glitchSound = document.getElementById("glitchSound");
 const errorSound = document.getElementById("errorSound");
@@ -10,53 +13,43 @@ let madnessActive = false;
 let madnessInterval;
 let madnessTimeout;
 
-function createMadModal({ title = "Ошибка", message = "Что-то пошло не так...", size = "normal", dark = false, glitch = false }) {
+function createMadModal({ title = "Ошибка", message = "Что-то пошло не так...", size = "normal", dark = false, glitch = false, headerColor = null }) {
   const original = document.getElementById("start-modal");
   const clone = original.cloneNode(true);
 
-  clone.classList.remove("start-model");
-  clone.classList.remove("light", "dark");
-  clone.classList.remove("small", "normal", "large");
+  clone.classList.remove("start-model", "light", "dark", "small", "normal", "large");
+  clone.classList.add(size, dark ? "dark" : "light");
+  if (glitch) clone.classList.add("glitchy");
 
-  clone.classList.add(size);
-  clone.classList.add(dark ? "dark" : "light");
-
-  if (glitch) {
-    clone.classList.add("glitchy");
-  }
-
-  // случайная позиция
   clone.style.top = Math.random() * 120 - 10 + "%";
   clone.style.left = Math.random() * 120 - 10 + "%";
   clone.style.zIndex = 100 + Math.floor(Math.random() * 1000);
 
-  // меняем заголовок
+  // Цвет шапки
+  const headerEl = clone.querySelector(".modal-header");
+  if (headerColor && headerEl) {
+    headerEl.style.backgroundColor = headerColor;
+  }
+
+  // Заголовок и крестик — без фона
+  const titleWrap = clone.querySelector(".modal-title-wrap");
+  const closeBtn = clone.querySelector(".modal-close");
+  if (titleWrap) titleWrap.style.background = "none";
+  if (closeBtn) closeBtn.style.background = "none";
+
   const titleEl = clone.querySelector(".modal-title");
   if (titleEl) titleEl.textContent = title;
 
-  // меняем сообщение
   const messageEl = clone.querySelector(".modal-content p");
   if (messageEl) messageEl.textContent = message;
 
-  // можно добавить кастомную логику на кнопки, если хочешь
   const yes = clone.querySelector("button#yesBtn");
   const no = clone.querySelector("button#noBtn");
+  if (yes) yes.onclick = triggerMadness;
+  if (no) no.onclick = () => {};
 
-  if (yes) {
-    yes.onclick = triggerMadness;
-  }
-
-  if (no) {
-    no.onclick = () => {};
-  }
-
-  // добавляем в DOM
   document.body.appendChild(clone);
-
-  // удалим через 7 секунд
-  setTimeout(() => {
-    if (clone.parentNode) clone.remove();
-  }, 7000);
+  setTimeout(() => clone.remove(), 7000);
 
   playErrorPerModal();
 }
@@ -87,17 +80,21 @@ yesBtn.addEventListener("click", () => {
     const themes = ["light", "dark"];
     const theme = themes[Math.floor(Math.random() * themes.length)];
 
+    const headerColor = headerColors[theme][Math.floor(Math.random() * headerColors[theme].length)];
+
     // Рандомный код ошибки
     const errorCodes = ["0xDEADFADE", "0xBADA55", "0xFA1LURE", "0xC0FFEE", "0xABADBABE", "0xBADCAFFE"];
     const errorCode = errorCodes[Math.floor(Math.random() * errorCodes.length)];
 
     createMadModal({
-      title: errorCode,
-      message: size === "small" ? "Критическая ошибка" : "Система перегружена!",
-      size,
-      dark: theme === "dark",
-      glitch: Math.random() < 0.3 // 30% шанс на глитч
-    });
+  title: errorCode,
+  message: size === "small" ? "Критическая ошибка" : "Система перегружена!",
+  size,
+  dark: theme === "dark",
+  glitch: Math.random() < 0.3,
+  headerColor
+});
+
   }
 
   // Следующий вызов через случайное время (от 100 до 600 мс)
